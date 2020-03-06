@@ -1,0 +1,20 @@
+{
+    "name": "server-side-javascript-homework",
+    "version": "1.0.0",
+    "description": "Homework assignment application for the subject \"Server-side JavaScript\" at my university",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bokovhu/server-side-javascript-homework.git"
+    },
+    "author": "Botond János Kovács",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bokovhu/server-side-javascript-homework/issues"
+    },
+    "homepage": "https://github.com/bokovhu/server-side-javascript-homework#readme",
+    "private": true
+}
