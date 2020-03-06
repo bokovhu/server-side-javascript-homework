@@ -14,10 +14,13 @@
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container-fluid d-flex justify-content-between">
                     <a href="/" class="navbar-brand d-flex align-items-center">PC Builder</a>
+
                     <div class="d-flex align-items-center">
-                        <a class="nav-link mr-4" href="/sign-up">Sign Up</a>
-                        <a role="button" class="btn btn-outline-primary" href="/login">Login</a>
+                        <small class="text-muted mr-4">Logged in as John Doe</small>
+                        <a role="button" class="btn btn-outline-primary mr-4" href="/my-configs">My Configurations</a>
+                        <a role="button" class="btn btn-outline-primary" href="/logout">Logout</a>
                     </div>
+
                 </div>
             </div>
 
@@ -27,12 +30,11 @@
 
             <section class="jumbotron text-center">
                 <div class="container">
-                    <h1>Browse configurations</h1>
+                    <h1>Your configurations</h1>
                 </div>
             </section>
 
             <section>
-
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-4 col-md-6 col-sm-12">
@@ -57,15 +59,15 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <span class="badge badge-success w-100">RAM</span>
-                                                    </td>
-                                                    <td>Crucial Dominator 16 GB DDR4 2400 MHz</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
                                                         <span class="badge badge-success w-100">GPU</span>
                                                     </td>
                                                     <td>Nvidia GeForce GTX 1060 6GB</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="badge badge-success w-100">RAM</span>
+                                                    </td>
+                                                    <td>Crucial Dominator 16 GB DDR4 2400 MHz</td>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -77,8 +79,11 @@
                                         </table>
                                     </div>
                                     <div class="card-actions d-flex justify-content-between align-items-center">
-                                        <small class="text-muted">by user1</small>
-                                        <a class="btn btn-primary" href="/open-configuration">Open</a>
+                                        <a class="btn btn-danger btn-sm" href="#" role="button">Delete</a>
+                                        <div class="d-flex d-justify-begin align-items-center">
+                                            <a class="btn btn-outline-primary btn-sm mr-2" href="#" role="button">Edit</a>
+                                            <a class="btn btn-outline-primary btn-sm" href="/open-configuration" role="button">Open</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -127,8 +132,11 @@
                                         </table>
                                     </div>
                                     <div class="card-actions d-flex justify-content-between align-items-center">
-                                        <small class="text-muted">by user1</small>
-                                        <a class="btn btn-primary" href="/open-configuration">Open</a>
+                                        <a class="btn btn-danger btn-sm" href="#" role="button">Delete</a>
+                                        <div class="d-flex d-justify-begin align-items-center">
+                                            <a class="btn btn-outline-primary btn-sm mr-2" href="#" role="button">Edit</a>
+                                            <a class="btn btn-outline-primary btn-sm" href="/open-configuration" role="button">Open</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -177,8 +185,11 @@
                                         </table>
                                     </div>
                                     <div class="card-actions d-flex justify-content-between align-items-center">
-                                        <small class="text-muted">by user1</small>
-                                        <a class="btn btn-primary" href="/open-configuration">Open</a>
+                                        <a class="btn btn-danger btn-sm" href="#" role="button">Delete</a>
+                                        <div class="d-flex d-justify-begin align-items-center">
+                                            <a class="btn btn-outline-primary btn-sm mr-2" href="#" role="button">Edit</a>
+                                            <a class="btn btn-outline-primary btn-sm" href="/open-configuration" role="button">Open</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -227,8 +238,11 @@
                                         </table>
                                     </div>
                                     <div class="card-actions d-flex justify-content-between align-items-center">
-                                        <small class="text-muted">by user1</small>
-                                        <a class="btn btn-primary" href="/open-configuration">Open</a>
+                                        <a class="btn btn-danger btn-sm" href="#" role="button">Delete</a>
+                                        <div class="d-flex d-justify-begin align-items-center">
+                                            <a class="btn btn-outline-primary btn-sm mr-2" href="#" role="button">Edit</a>
+                                            <a class="btn btn-outline-primary btn-sm" href="/open-configuration" role="button">Open</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -277,16 +291,32 @@
                                         </table>
                                     </div>
                                     <div class="card-actions d-flex justify-content-between align-items-center">
-                                        <small class="text-muted">by user1</small>
-                                        <a class="btn btn-primary" href="/open-configuration">Open</a>
+                                        <a class="btn btn-danger btn-sm" href="#" role="button">Delete</a>
+                                        <div class="d-flex d-justify-begin align-items-center">
+                                            <a class="btn btn-outline-primary btn-sm mr-2" href="#" role="button">Edit</a>
+                                            <a class="btn btn-outline-primary btn-sm" href="/open-configuration" role="button">Open</a>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 col-sm-12 align-self-stretch pb-4">
+
+                            <div class="card shadow-sm h-100">
+                                <div class="card-body">
+                                    <a href="/new-configuration">
+                                        <div class="d-flex justify-content-center align-items-center h-100">
+                                            <span class="display-4">+ Create new config</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </section>
 
         </main>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PC Builder</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/pcbuilder.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+
+    <body>
+        
+        <header>
+
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container-fluid d-flex justify-content-between">
+                    <a href="/" class="navbar-brand d-flex align-items-center">PC Builder</a>
+
+                    <div class="d-flex align-items-center">
+                        <a class="nav-link mr-4" href="/signup">Sign Up</a>
+                        <a role="button" class="btn btn-outline-primary" href="/login">Login</a>
+                    </div>
+
+                    <!--
+                    <div class="d-flex align-items-center">
+                        <small class="text-muted mr-4">Logged in as John Doe</small>
+                        <a role="button" class="btn btn-outline-primary mr-4" href="/my-configs">My Configurations</a>
+                        <a role="button" class="btn btn-outline-primary" href="/logout">Logout</a>
+                    </div>
+                    -->
+
+                </div>
+            </div>
+
+        </header>
+
+        <main role="main">
+
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h1>Config #1</h1>
+                    <p class="lead">by user1</p>
+                    <a role="button" class="btn btn-primary" href="#" onclick="window.history.back()">Back</a>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            
+                            <table class="table table-hover" id="componentsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Manufacturer</th>
+                                        <th>Model</th>
+                                        <th>Specification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-expansion="expansion-cpu">
+                                        <td>
+                                            <span class="badge badge-success badge-xl w-100">CPU</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.intel.com/">Intel</a>
+                                        </td>
+                                        <td>
+                                            Core i7 8750H
+                                        </td>
+                                        <td>
+                                            6x2,2 GHz
+                                        </td>
+                                    </tr>
+
+                                    <tr data-expansion="expansion-motherboard">
+                                        <td>
+                                            <span class="badge badge-success badge-xl w-100">MOTHERBOARD</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.msi.com/">MSI</a>
+                                        </td>
+                                        <td>
+                                            MSI Notebook motherboard
+                                        </td>
+                                        <td>
+                                            -
+                                        </td>
+                                    </tr>
+
+                                    <tr data-expansion="expansion-ram">
+                                        <td>
+                                            <span class="badge badge-success badge-xl w-100">RAM</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.crucial.com/">Crucial</a>
+                                        </td>
+                                        <td>
+                                            Dominator series
+                                        </td>
+                                        <td>
+                                            16 GB DDR4 2400 MHz
+                                        </td>
+                                    </tr>
+
+                                    <tr data-expansion="expansion-gpu">
+                                        <td>
+                                            <span class="badge badge-success badge-xl w-100">GPU</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.nvidia.com/">NVidia</a>
+                                        </td>
+                                        <td>
+                                            GeForce GTX 1060
+                                        </td>
+                                        <td>
+                                            6GB GDDR5
+                                        </td>
+                                    </tr>
+
+                                    <tr data-expansion="expansion-storage">
+                                        <td>
+                                            <span class="badge badge-success badge-xl w-100">STORAGE</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://www.samsung.com/">Samsung</a>
+                                        </td>
+                                        <td>
+                                            970 Evo Plus
+                                        </td>
+                                        <td>
+                                            1TB SSD
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <div class="row-expansion" id="expansion-cpu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Core count</span>
+                                    </td>
+                                    <td class="text-center">6</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Frequency</span>
+                                    </td>
+                                    <td class="text-center">2,2 GHz</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Socket</span>
+                                    </td>
+                                    <td class="text-center">LGA1151</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-expansion" id="expansion-motherboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Form factor</span>
+                                    </td>
+                                    <td class="text-center">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">CPU Socket</span>
+                                    </td>
+                                    <td class="text-center">LGA1151</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-expansion" id="expansion-ram">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Capacity</span>
+                                    </td>
+                                    <td class="text-center">16 GB</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Standard</span>
+                                    </td>
+                                    <td class="text-center">DDR4</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Frequency</span>
+                                    </td>
+                                    <td class="text-center">2400 MHz</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-expansion" id="expansion-gpu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">VRAM</span>
+                                    </td>
+                                    <td class="text-center">6 GB</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">VRAM Type</span>
+                                    </td>
+                                    <td class="text-center">GDDR5</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Core Frequency</span>
+                                    </td>
+                                    <td class="text-center">1,1 GHz</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Memory Frequency</span>
+                                    </td>
+                                    <td class="text-center">5 GHz</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-expansion" id="expansion-storage">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Capacity</span>
+                                    </td>
+                                    <td class="text-center">1 TB</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Interface</span>
+                                    </td>
+                                    <td class="text-center">PCI-E Gen. 4</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Size</span>
+                                    </td>
+                                    <td class="text-center">M.2 2280</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Read speed</span>
+                                    </td>
+                                    <td class="text-center">3500 MB/s</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">Write speed</span>
+                                    </td>
+                                    <td class="text-center">3500 MB/s</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://kit.fontawesome.com/b1fd7b3545.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="/static/pcbuilder.js"></script>
+        <script>
+            $(
+                () => {
+                    toggleTable ($('#componentsTable'));
+                }
+            );
+        </script>
+    </body>
+</html>
