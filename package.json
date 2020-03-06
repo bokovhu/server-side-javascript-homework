@@ -16,5 +16,8 @@
         "url": "https://github.com/bokovhu/server-side-javascript-homework/issues"
     },
     "homepage": "https://github.com/bokovhu/server-side-javascript-homework#readme",
-    "private": true
+    "private": true,
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
