@@ -2,29 +2,37 @@
 <html lang="en">
     <head>
         <title>PC Builder</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="/static/pcbuilder.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/pcbuilder.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
     </head>
 
     <body>
-        
         <header>
-
             <div class="navbar navbar-dark bg-dark shadow-sm">
                 <div class="container-fluid d-flex justify-content-between">
-                    <a href="/" class="navbar-brand d-flex align-items-center">PC Builder</a>
+                    <a href="/" class="navbar-brand d-flex align-items-center"
+                        >PC Builder</a
+                    >
                     <div class="d-flex align-items-center">
                         <a class="nav-link mr-4" href="/signup">Sign Up</a>
-                        <a role="button" class="btn btn-outline-primary" href="/login">Login</a>
+                        <a
+                            role="button"
+                            class="btn btn-outline-primary"
+                            href="/login"
+                            >Login</a
+                        >
                     </div>
                 </div>
             </div>
-
         </header>
 
         <main role="main">
-
             <section class="jumbotron text-center">
                 <div class="container">
                     <h1>Login</h1>
@@ -32,26 +40,48 @@
             </section>
 
             <section>
-
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-text">
-                                        <form>
+                                        <form action="/login" method="POST">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="loginEmail" placeholder="Your e-mail address">
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="loginEmail"
+                                                    placeholder="Your e-mail address"
+                                                    name="loginEmail"
+                                                />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    id="loginPassword"
+                                                    placeholder="Password"
+                                                    name="loginPassword"
+                                                />
                                             </div>
 
-                                            <div class="d-flex justify-content-end align-items-center">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <a class="btn btn-primary" role="button" href="/as-logged-in">Login</a>
-                                                    <a class="nav-link" href="#">I forgot my password</a>
+                                            <div
+                                                class="d-flex justify-content-end align-items-center"
+                                            >
+                                                <div
+                                                    class="d-flex flex-column justify-content-center"
+                                                >
+                                                    <input
+                                                        type="submit"
+                                                        class="btn btn-primary"
+                                                        role="button"
+                                                        value="Login"
+                                                    />
+                                                    <a class="nav-link" href="#"
+                                                        >I forgot my password</a
+                                                    >
                                                 </div>
                                             </div>
                                         </form>
@@ -61,13 +91,23 @@
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </main>
-        
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
+        ></script>
     </body>
 </html>

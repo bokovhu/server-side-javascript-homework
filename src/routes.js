@@ -1,4 +1,5 @@
 const path = require("path");
+const login = require('./endpoint/login');
 
 function addStaticPageRoutes(app) {
     app.get("/", (req, res, next) => {
@@ -19,9 +20,7 @@ function addStaticPageRoutes(app) {
         );
     });
 
-    app.get("/login", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/login.html"));
-    });
+    app.use('/login', login);
 
     app.get("/logout", (req, res, next) => {
         res.sendFile(path.resolve(__dirname, "../pages/logout.html"));
