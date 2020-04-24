@@ -2,6 +2,7 @@ const path = require("path");
 const login = require("./endpoint/login");
 const logout = require("./endpoint/logout");
 const createConfig = require("./endpoint/config/createConfig");
+const registerUser = require("./endpoint/user/registerUser");
 
 function addStaticPageRoutes(app) {
     app.get("/", (req, res, next) => {
@@ -33,6 +34,7 @@ function addStaticPageRoutes(app) {
     });
 
     app.post("/api/config/create", createConfig);
+    app.post("/api/user/register", registerUser);
 }
 
 module.exports = addStaticPageRoutes;

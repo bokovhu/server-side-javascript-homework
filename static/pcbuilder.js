@@ -117,4 +117,36 @@ window.PCBuilder = {
             page.saveButton.click(page.onSave.bind(page));
         },
     },
+    SignupPage: {
+        mount(el) {
+            const page = {
+                form: el,
+                nameInput: el.find("#signupName"),
+                emailInput: el.find("#signupEmail"),
+                passwordInput: el.find("#signupPassword"),
+                signupButton: el.find("#signupButton"),
+                onSignup() {
+                    const request = {
+                        name: this.nameInput.val(),
+                        emailAddress: this.emailInput.val(),
+                        password: this.passwordInput.val(),
+                    };
+
+                    $.ajax({
+                        url: `${PCBuilder.Config.url}/api/user/register`,
+                        method: "POST",
+                        data: JSON.stringify(request),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                    })
+                        .done(
+                            () =>
+                                (window.location = `${PCBuilder.Config.url}/thanks-for-signing-up`)
+                        )
+                        .fail(() => alert("Unsuccessful operation"));
+                },
+            };
+            page.signupButton.click(page.onSignup.bind(page));
+        },
+    },
 };

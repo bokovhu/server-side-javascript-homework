@@ -37,7 +37,7 @@ function addAllMiddleware(app) {
     // a valid login in the request
     app.use("/my-configs", requireUser());
     app.use("/new-configuration", requireUser());
-    app.use("/api", requireUser());
+    app.use("/api/config", requireUser());
 
     // Set up configuration populator middleware
     // TODO: Configure this middleware to retreive current
