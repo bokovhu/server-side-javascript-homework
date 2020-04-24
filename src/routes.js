@@ -1,46 +1,38 @@
 const path = require("path");
-const login = require('./endpoint/login');
+const login = require("./endpoint/login");
+const logout = require("./endpoint/logout");
+const createConfig = require("./endpoint/config/createConfig");
 
 function addStaticPageRoutes(app) {
     app.get("/", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/index.html"));
-    });
-
-    app.get("/as-logged-in", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/index-logged-in.html"));
+        res.render("index");
     });
 
     app.get("/sign-up", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/sign-up.html"));
+        res.render("sign-up");
     });
 
     app.get("/thanks-for-signing-up", (req, res, next) => {
-        res.sendFile(
-            path.resolve(__dirname, "../pages/thanks-for-signing-up.html")
-        );
+        res.render("thanks-for-signing-up");
     });
 
-    app.use('/login', login);
+    app.use("/login", login);
 
-    app.get("/logout", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/logout.html"));
-    });
+    app.use("/logout", logout);
 
     app.get("/my-configs", (req, res, next) => {
-        res.sendFile(path.resolve(__dirname, "../pages/my-configs.html"));
+        res.render("my-configs");
     });
 
-    app.get("/open-configuration", (req, res, next) => {
-        res.sendFile(
-            path.resolve(__dirname, "../pages/open-configuration.html")
-        );
+    app.get("/open-configuration/:id", (req, res, next) => {
+        res.render("open-configuration");
     });
 
     app.get("/new-configuration", (req, res, next) => {
-        res.sendFile(
-            path.resolve(__dirname, "../pages/new-configuration.html")
-        );
+        res.render("new-configuration");
     });
+
+    app.post("/api/config/create", createConfig);
 }
 
 module.exports = addStaticPageRoutes;

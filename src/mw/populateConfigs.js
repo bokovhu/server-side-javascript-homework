@@ -1,5 +1,9 @@
-const logRequest = require('../logRequest');
-const LOGTAG = 'Config Populator middleware';
+const logRequest = require("../logRequest");
+const LOGTAG = "Config Populator middleware";
+
+const Build = require("../db/build");
+
+const mapConfig = require("../model/config");
 
 // A middleware, that populates the configurations
 // in the current request. Can be used to retreive
@@ -10,9 +14,23 @@ const LOGTAG = 'Config Populator middleware';
 module.exports = (config) => {
     return (req, res, next) => {
 
-        logRequest(req, LOGTAG, 'Intercepting request');
+        let buildFindPromise = null;
 
-        // TODO: Implement
-        next ();
-    }
-}
+        if (config.onlyCurrentUsers) {
+            buildFindPromise = Build.find({
+                ownerId: res.locals.userId,
+            }).exec();
+        } else {
+            buildFindPromise = Build.find({}).exec();
+        }
+
+        buildFindPromise
+            .then((builds) =>
+                Promise.all(builds.map((build) => mapConfig(build)))
+            )
+            .then((configs) => {
+                res.locals.configs = configs;
+                next();
+            });
+    };
+};

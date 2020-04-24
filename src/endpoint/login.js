@@ -1,8 +1,30 @@
 const path = require("path");
 const JWT = require("jsonwebtoken");
 
+const User = require("../db/user");
+const bcrypt = require("bcrypt");
+
 const getLogin = (req, res, next) => {
-    res.sendFile(path.resolve(__dirname, "../../pages/login.html"));
+    res.render("login");
+};
+
+const onAuthDetailsValid = (req, res, user) => {
+    const token = JWT.sign({ uid: user._id }, req.app.locals.jwtSecret, {
+        algorithm: "HS256",
+    });
+    res.cookie("jwt", token, {
+        expires: new Date(Date.now() + 1000 * 60 * 60),
+    });
+
+    if (req.query.back) {
+        res.redirect(req.query.back);
+    } else {
+        res.redirect("/");
+    }
+};
+
+const onAuthDetailsInvalid = (req, res, user) => {
+    res.redirect("/login?error=true");
 };
 
 const postLogin = (req, res, next) => {
@@ -10,23 +32,32 @@ const postLogin = (req, res, next) => {
     const password = req.body.loginPassword;
 
     if (!email || !password) {
-        // TODO: Better solution
-        // Should also be checked in the form
-        res.redirect("/login?error=true");
+        onAuthDetailsInvalid(req, res, null);
     } else {
-        // TODO: Implement proper authentication
-        const token = JWT.sign({ uid: email }, req.app.locals.jwtSecret, {
-            algorithm: "HS256"
-        });
-        res.cookie("jwt", token, {
-            expires: new Date(Date.now() + 1000 * 60 * 60)
-        });
-
-        if (req.query.back) {
-            res.redirect(req.query.back);
-        } else {
-            res.redirect("/");
-        }
+        User.findOne({
+            emailAddress: email,
+        }).then(
+            (user) => {
+                if (!user) {
+                    onAuthDetailsInvalid(req, res, null);
+                } else {
+                    bcrypt.compare(
+                        password,
+                        user.passwordHash,
+                        (err, valid) => {
+                            if (valid) {
+                                onAuthDetailsValid(req, res, user);
+                            } else {
+                                onAuthDetailsInvalid(req, res, user);
+                            }
+                        }
+                    );
+                }
+            },
+            (reason) => {
+                onAuthDetailsInvalid(req, res, null);
+            }
+        );
     }
 };
 

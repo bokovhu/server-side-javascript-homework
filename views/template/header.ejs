@@ -1,0 +1,27 @@
+<header>
+
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid d-flex justify-content-between">
+            <a href="/" class="navbar-brand d-flex align-items-center">PC Builder</a>
+
+            <% if (locals.authenticated) { %>
+
+                <div class="d-flex align-items-center">
+                    <small class="text-muted mr-4">Logged in as <%= locals.user.name %></small>
+                    <a role="button" class="btn btn-outline-primary mr-4" href="/my-configs">My Configurations</a>
+                    <a role="button" class="btn btn-outline-primary" href="/logout">Logout</a>
+                </div>
+
+            <% } else { %>
+
+            <div class="d-flex align-items-center">
+                <a class="nav-link mr-4" href="/sign-up">Sign Up</a>
+                <a role="button" class="btn btn-outline-primary" href="/login">Login</a>
+            </div>
+
+            <% } %>
+
+        </div>
+    </div>
+
+</header>

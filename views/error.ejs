@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PC Builder</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/pcbuilder.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <%- include('template/header'); -%>
+
+        <main role="main">
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h1>An error occured:</h1>
+                </div>
+            </section>
+
+            <section>
+                <div class="container-fluid">
+                    <div class="row">
+                        <p>
+                            <%= locals.error %>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('template/bodyScripts'); -%>
+        
+    </body>
+</html>

@@ -1,6 +1,9 @@
 const logRequest = require("../logRequest");
 const JWT = require("jsonwebtoken");
 
+const User = require("../db/user");
+const ObjectId = require("mongoose").Types.ObjectId;
+
 const LOGTAG = "Authentication middleware";
 
 // A middleware that authenticates the user.
@@ -11,7 +14,7 @@ const LOGTAG = "Authentication middleware";
 // If a JWT is found in the request, but cannot
 // be verified, the user is redirected to an
 // error page.
-module.exports = options => {
+module.exports = (options) => {
     return (req, res, next) => {
         logRequest(req, LOGTAG, "Intercepting request");
 
@@ -24,7 +27,7 @@ module.exports = options => {
                 req.app.locals.jwtSecret,
                 {
                     // Using HMAC-SHA256 algorithm for the sake of simplicity
-                    algorithms: ["HS256"]
+                    algorithms: ["HS256"],
                 },
                 (err, requestJwt) => {
                     if (err) {
@@ -39,16 +42,26 @@ module.exports = options => {
                         res.locals.authenticated = false;
                         res.redirect("/error-invalid-jwt");
                     } else {
-                        // JWT verified, user can be considered
-                        // as an authenticated principal
-                        logRequest(
-                            req,
-                            LOGTAG,
-                            `User authenticated, user ID: ${requestJwt.uid}`
+                        User.findById(new ObjectId(requestJwt.uid)).then(
+                            (user) => {
+                                logRequest(
+                                    req,
+                                    LOGTAG,
+                                    `User authenticated, user ID: ${requestJwt.uid}`
+                                );
+                                res.locals.userId = requestJwt.uid;
+                                res.locals.user = user;
+                                res.locals.authenticated = true;
+
+                                // JWT verified, user can be considered
+                                // as an authenticated principal
+                                next();
+                            },
+                            (reason) => {
+                                res.locals.error = reason;
+                                res.render("error");
+                            }
                         );
-                        res.locals.userId = requestJwt.uid;
-                        res.locals.authenticated = true;
-                        next();
                     }
                 }
             );

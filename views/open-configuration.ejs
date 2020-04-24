@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PC Builder</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/pcbuilder.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <%- include('template/header'); -%>
+        <main role="main">
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h1><%= locals.config.name %></h1>
+                    <p class="lead">
+                        by
+                        <a href="mailto:<%= locals.config.createdBy.emailAddress %>">
+                            <%= locals.config.createdBy.name %>
+                        </a>
+                    </p>
+                    <a
+                        role="button"
+                        class="btn btn-primary"
+                        href="#"
+                        onclick="window.history.back()"
+                        >Back</a
+                    >
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <table
+                                class="table table-hover"
+                                id="componentsTable"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Manufacturer</th>
+                                        <th>Model</th>
+                                        <th>Specification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% locals.config.parts.forEach ( (part) => {
+                                    let expansionType = 'expansion-' +
+                                    part.type.toLowerCase (); %>
+                                    <tr data-expansion="<%= expansionType %>">
+                                        <td>
+                                            <span
+                                                class="badge badge-success badge-xl w-100"
+                                            >
+                                                <%= part.type %>
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <a
+                                                href="<%= part.manufacturer.website %>"
+                                            >
+                                                <%= part.manufacturer.name %>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <%= part.model %>
+                                        </td>
+
+                                        <td>
+                                            <%= part.specification %>
+                                        </td>
+                                    </tr>
+                                    <% } ); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <% locals.config.parts.forEach ( (part) => { let expansionType =
+        'expansion-' + part.type.toLowerCase (); %>
+
+        <div class="row-expansion" id="<%= expansionType %>">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <table class="table table-sm table-borderless">
+                            <tbody>
+                                <% part.technicalParameters.forEach (
+                                (parameter) => { %>
+
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-primary w-100">
+                                            <%= parameter.name %>
+                                        </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <%= parameter.value %>
+                                    </td>
+                                </tr>
+
+                                <% } ); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% } ); %>
+
+        <%- include('template/bodyScripts'); -%>
+        
+        <script>
+            $(() => {
+                PCBuilder.Components.toggleTable($("#componentsTable"));
+            });
+        </script>
+    </body>
+</html>

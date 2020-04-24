@@ -1,5 +1,7 @@
-const logRequest = require('../logRequest');
-const LOGTAG = 'Part Populator middleware';
+const logRequest = require("../logRequest");
+const LOGTAG = "Part Populator middleware";
+
+const Part = require("../db/part");
 
 // This middleware populates the list of a
 // given type of computer parts. Can be
@@ -7,10 +9,11 @@ const LOGTAG = 'Part Populator middleware';
 // or to retreive all parts of a given type.
 module.exports = (options) => {
     return (req, res, next) => {
+        logRequest(req, LOGTAG, "Intercepting request");
 
-        logRequest(req, LOGTAG, 'Intercepting request');
-
-        // TODO: Implement
-        next ();
-    }
-}
+        Part.find({}).then((parts) => {
+            res.locals.parts = parts;
+            next();
+        });
+    };
+};

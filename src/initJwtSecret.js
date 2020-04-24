@@ -1,13 +1,17 @@
 const fs = require("fs");
 const crypto = require("crypto");
 
-const generateAndWriteJWTSecret = file => {
+const generateAndWriteJWTSecret = (file) => {
     secret = crypto.randomBytes(32);
     fs.writeFileSync(file, secret);
 };
 
 const readJWTSecretFromFile = (app, config) => {
-    app.locals.jwtSecret = fs.readFileSync(config.jwtSecretFile);
+    const secret = fs.readFileSync(config.jwtSecretFile);
+    if (app) {
+        app.locals.jwtSecret = secret;
+    }
+    return secret;
 };
 
 const initJWTSecret = (app, config) => {
@@ -17,8 +21,9 @@ const initJWTSecret = (app, config) => {
         );
         generateAndWriteJWTSecret(config.jwtSecretFile);
     }
-    readJWTSecretFromFile(app, config);
+    const secret = readJWTSecretFromFile(app, config);
     console.log("JWT secret initialized");
+    return secret;
 };
 
 // This function initializes the secret

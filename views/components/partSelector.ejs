@@ -1,0 +1,13 @@
+<div class="input-group mb-2">
+    <select class="form-control" id="<%= id %>" required>
+        <option value="<%= noOptionValue %>">
+            <%= noOptionLabel %>
+        </option>
+        <% parts.filter ( part => part.type == partType ).forEach ( part => { %>
+        <option value="<%= part._id %>">
+            <%= part.manufacturer.name %> <%= part.model %> <%=
+            part.specification %>
+        </option>
+        <% } ); %>
+    </select>
+</div>

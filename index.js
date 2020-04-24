@@ -10,6 +10,10 @@ const app = express();
 // Setup static middleware for routes /static/...
 app.use("/static", express.static(conf.staticDir));
 
+// Setup template rendering
+app.set('views', path.resolve(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
 // Initialize JWT secret
 initJWTSecret(app, conf);
 
