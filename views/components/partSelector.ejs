@@ -4,10 +4,20 @@
             <%= noOptionLabel %>
         </option>
         <% parts.filter ( part => part.type == partType ).forEach ( part => { %>
-        <option value="<%= part._id %>">
+            <% let selected = (typeof value !== 'undefined' && part.id === value.toString()) ? 'selected' : ''; %>
+        <option value="<%= part._id %>" <%= selected %>
+            >
             <%= part.manufacturer.name %> <%= part.model %> <%=
             part.specification %>
         </option>
         <% } ); %>
     </select>
+    <div class="input-group-append">
+        <% if (typeof locals.config !== 'undefined') { %>
+            <a class="btn btn-primary"
+                href="/part-search?partType=<%= partType %>&configId=<%= locals.config.id %>">
+                Search
+            </a>
+        <% } %>
+    </div>
 </div>

@@ -56,8 +56,11 @@ function addAllMiddleware(app) {
     // TODO: Write part search page
     // TODO: Configure this middleware
     app.use("/part-search", populateFilters());
+    app.use("/part-search", populateParts());
 
     app.use("/open-configuration/:id", loadConfig());
+    app.use('/edit-configuration/:id', loadConfig());
+    app.use('/edit-configuration/:id', populateParts());
 }
 
 module.exports = addAllMiddleware;

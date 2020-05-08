@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PC Builder</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/pcbuilder.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <%- include('template/header'); -%>
+        <main role="main">
+
+            <section>
+
+                <div class="container-fluid">
+                    <div class="row mt-4">
+                        <div class="col-2">
+                            <form id="searchFilter" class="form">
+
+                                <input type="hidden" id="partType" value="<%= locals.partType %>">
+                                <% if (typeof locals.configId !== 'undefined') { %>
+                                    <input type="hidden" id="configId" value="<%= locals.configId %>">
+                                    <input type="hidden" id="oldPartId" value="<%= locals.oldPartId %>">
+                                <% } %>
+
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Text search" id="textSearch">
+                                </div>
+
+                                <% locals.filters.forEach ( filter => { %>
+
+                                    <% if (filter.type === 'TechnicalParameterChoiceFilter') { %>
+
+                                        <div class="form-group">
+                                            <h5><%= filter.parameterName %></h5>
+                                                
+                                            <% filter.choices.forEach ( choice => { %>
+
+                                                <div class="form-check">
+                                                    <input data-filtertype="<%= filter.type %>" data-param="<%= filter.parameterName %>" data-choice="<%= choice %>" class="form-check-input" type="checkbox" checked>
+                                                    <label class="form-check-label"><%= choice %></label>
+                                                </div>
+
+                                            <% } ); %>
+
+                                        </div>
+
+                                    <% } else if (filter.type === 'TechnicalParameterHasFilter') { %>
+
+                                        <div class="form-group">
+                                            <h5><%= filter.parameterName %></h5>
+                                                
+                                            <div class="form-check">
+                                                <input data-filtertype="<%= filter.type %>" data-param="<%= filter.parameterName %>" data-yesno="dontcare" class="form-check-input" type="radio" checked name="<%= filter.parameterName %>">
+                                                <label class="form-check-label">Don't care</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input data-filtertype="<%= filter.type %>" data-param="<%= filter.parameterName %>" data-yesno="yes" class="form-check-input" type="radio" name="<%= filter.parameterName %>">
+                                                <label class="form-check-label">Yes</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input data-filtertype="<%= filter.type %>" data-param="<%= filter.parameterName %>" data-yesno="no" class="form-check-input" type="radio" name="<%= filter.parameterName %>">
+                                                <label class="form-check-label">No</label>
+                                            </div>
+
+                                        </div>
+
+                                    <% } else if (filter.type === 'ManufacturerFilter') { %>
+
+                                        <div class="form-group">
+                                            <h5>Filter by manufacturer</h5>
+                                                
+                                            <% filter.choices.forEach ( choice => { %>
+
+                                                <div class="form-check">
+                                                    <input data-filtertype="<%= filter.type %>" data-manufacturer data-choice="<%= choice %>" class="form-check-input" type="checkbox" checked>
+                                                    <label class="form-check-label"><%= choice %></label>
+                                                </div>
+
+                                            <% } ); %>
+
+                                        </div>
+
+                                    <% } %>
+
+                                    <hr />
+
+                                <% } ); %>
+
+                                <button class="btn btn-primary w-100">Search</button>
+
+                            </form>
+                        </div>
+
+                        <div class="col">
+                            <form id="searchResult">
+                                <input type="hidden"
+                                    id="allParts"
+                                    value="<%= JSON.stringify(locals.parts) %>">
+                                <table class="table table-sm table-borderless" id="resultsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Manufacturer</th>
+                                            <th>Model</th>
+                                            <th>Specification</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <%- include('template/bodyScripts'); -%>
+        
+        <script>
+            $(() => {
+                PCBuilder.PartSearchPage.mount($("#searchFilter"), $("#searchResult"));
+            });
+        </script>
+    </body>
+</html>

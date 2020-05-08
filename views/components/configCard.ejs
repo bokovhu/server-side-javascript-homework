@@ -1,4 +1,8 @@
-<div class="card mb-4 shadow-sm">
+<%
+let isOwn = config.createdBy.id === locals.userId;
+%>
+
+<div class="config-card card mb-4 shadow-sm" data-config-id="<%= config.id %>">
     <div class="card-body">
         <h5 class="card-title w-100 text-center">
             <%= config.name %>
@@ -24,6 +28,7 @@
         <div
             class="card-actions d-flex justify-content-between align-items-center"
         >
+        <% if (!isOwn) { %>
             <small class="text-muted"
                 >by
                 <a href="mailto:<%= config.createdBy.emailAddress %>"
@@ -35,6 +40,25 @@
                 href="/open-configuration/<%= config.id %>"
                 >Open</a
             >
+        <% } else { %>
+
+            <button class="delete-config btn btn-danger">Delete</button>
+
+            <div>
+                <a
+                    class="btn btn-secondary"
+                    href="/edit-configuration/<%= config.id %>"
+                    >Edit</a
+                >
+                <a
+                    class="btn btn-primary"
+                    href="/open-configuration/<%= config.id %>"
+                    >Open</a
+                >
+            </div>
+
+        <% } %>
+
         </div>
     </div>
 </div>

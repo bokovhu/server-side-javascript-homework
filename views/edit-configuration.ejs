@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PC Builder</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/pcbuilder.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <%- include('template/header'); -%>
+        <main role="main">
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h1>Edit configuration</h1>
+                    <a
+                        role="button"
+                        class="btn btn-primary"
+                        href="#"
+                        onclick="window.history.back()"
+                        >Back</a
+                    >
+                </div>
+            </section>
+
+            <%
+
+            let partsByType = {};
+            locals.config.parts.forEach (
+                part => partsByType [part.type] = part
+            );
+
+            %>
+
+            <section>
+                <form id="editConfig">
+
+                    <input type="hidden" value="<%= locals.config.id %>" id="configId">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                    <div class="form-group">
+                                        <label for="configName"
+                                            >Edit configuration</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="configName"
+                                            class="form-control"
+                                            placeholder="My amazing supercomputer"
+                                            value="<%= locals.config.name %>"
+                                            required
+                                        />
+                                    </div>
+
+                                    <fieldset class="form-group">
+                                        <label>Select your components</label>
+
+                                        <!-- CPU selector -->
+                                        <%- include('components/partSelector', { value: partsByType['CPU'].id, parts: locals.parts, id: 'cpuSelector', partType: 'CPU', noOptionLabel: 'Select CPU', noOptionValue: 'null' }) %>
+
+                                        <!-- Motherboard selector -->
+                                        <%- include('components/partSelector', { value: partsByType['MOTHERBOARD'].id, parts: locals.parts, id: 'motherboardSelector', partType: 'MOTHERBOARD', noOptionLabel: 'Select Motherboard', noOptionValue: 'null' }) %>
+
+                                        <!-- RAM selector -->
+                                        <%- include('components/partSelector', { value: partsByType['RAM'].id, parts: locals.parts, id: 'ramSelector', partType: 'RAM', noOptionLabel: 'Select RAM', noOptionValue: 'null' }) %>
+
+                                        <!-- GPU selector -->
+                                        <%- include('components/partSelector', { value: partsByType['GPU'].id, parts: locals.parts, id: 'gpuSelector', partType: 'GPU', noOptionLabel: 'Select GPU', noOptionValue: 'null' }) %>
+
+                                        <!-- Storage selector -->
+                                        <%- include('components/partSelector', { value: partsByType['STORAGE'].id, parts: locals.parts, id: 'storageSelector', partType: 'STORAGE', noOptionLabel: 'Select Storage device', noOptionValue: 'null' }) %>
+                                    </fieldset>
+                            </div>
+
+                            <div class="col-12">
+                                <a
+                                    class="btn btn-success w-100"
+                                    role="button"
+                                    id="saveButton"
+                                    >SAVE CHANGES</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <%- include('template/bodyScripts') %>
+
+        <script>
+            PCBuilder.EditConfigurationPage.mount($('#editConfig'));
+        </script>
+
+    </body>
+</html>
