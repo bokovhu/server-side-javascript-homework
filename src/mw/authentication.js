@@ -1,7 +1,6 @@
 const logRequest = require("../logRequest");
 const JWT = require("jsonwebtoken");
 
-const User = require("../db/user");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const LOGTAG = "Authentication middleware";
@@ -16,7 +15,12 @@ const LOGTAG = "Authentication middleware";
 // error page.
 module.exports = (options) => {
     return (req, res, next) => {
-        logRequest(req, LOGTAG, "Intercepting request");
+        let User = undefined;
+        if (typeof options.db.User !== 'undefined') {
+            User = options.db.User;
+        } else {
+            User = require('../db/user');
+        }
 
         const requestJwtToken = req.cookies.jwt;
         logRequest(req, LOGTAG, `Request JWT: ${requestJwtToken}`);

@@ -4,7 +4,7 @@
     "description": "Homework assignment application for the subject \"Server-side JavaScript\" at my university",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "mocha --recursive test/**/*.spec.js",
         "start": "node index.js",
         "serve": "nodemon index.js",
         "migratedb": "node ./src/db/_initdb/index.js"
@@ -22,11 +22,13 @@
     "private": true,
     "dependencies": {
         "bcrypt": "^4.0.1",
+        "chai": "^4.2.0",
         "cookie-parser": "^1.4.5",
         "dotenv": "^8.2.0",
         "ejs": "^3.0.2",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
+        "mocha": "^7.1.2",
         "mongoose": "^5.9.10",
         "nodemon": "^2.0.2"
     }
